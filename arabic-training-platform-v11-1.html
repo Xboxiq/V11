@@ -2613,6 +2613,7 @@
     </div>
 
     <div class="topbar-actions">
+      <button class="icon-btn" id="global-selftest-btn" title="اختبر نفسك 🎯">🎯</button>
 
       <div class="tb-btn" title="الإشعارات">
         <div class="tb-notif-dot"></div>
@@ -6196,7 +6197,26 @@
         </div>
       </div>
 
+      <!-- v12-ADD:DISC -->
+      <div class="card v12-disc-wrap" style="margin-top:24px;padding:20px;">
+        <h3 style="margin:0 0 12px;">🧭 بوصلة الشخصية — قراءة الزبون في ٦٠ ثانية</h3>
+        <div class="v12-disc-grid">
+          <div class="v12-disc-card d" onclick="toggleDiscCard(this)"><div class="bar"></div><h4>🔴 المسيطر (D)</h4><div class="v12-tabs"><button onclick="switchDiscTab(event,this,'detect')">التعرف</button><button onclick="switchDiscTab(event,this,'deal')">التعامل</button><button onclick="switchDiscTab(event,this,'scripts')">السكريبتات</button></div><div class="v12-pane detect active">يتكلم بسرعة ويقاطع. جمل: خلّصني، أعطني الزبدة، الوقت ضيق. الإشارات: نبرة حادة، طلب نتائج، استعجال.</div><div class="v12-pane deal">جملة فتح الباب: "خلال دقيقتين أعطيك نتيجة واضحة". الخطأ القاتل: الإطالة والتنظير.</div><div class="v12-pane scripts">كول سنتر: "حل مباشر الآن" · مبيعات: "ROI فوري" · AM: "خطة تنفيذ" · تقنية: "حل عملي قابل للقياس".</div><div class="v12-speed"><span style="width:92%"></span></div></div>
+          <div class="v12-disc-card i" onclick="toggleDiscCard(this)"><div class="bar"></div><h4>🟡 المعبّر (I)</h4><div class="v12-tabs"><button onclick="switchDiscTab(event,this,'detect')">التعرف</button><button onclick="switchDiscTab(event,this,'deal')">التعامل</button><button onclick="switchDiscTab(event,this,'scripts')">السكريبتات</button></div><div class="v12-pane detect active">يحكي قصصًا ويضحك. جمل: شفت؟ رهيب! خلّها ممتعة. الإشارات: حماس، انتقال سريع، يبحث عن تفاعل.</div><div class="v12-pane deal">جملة الفتح: "فكرتك ممتازة ونقدر نخليها لامعة". الخطأ القاتل: برود جاف بلا تفاعل.</div><div class="v12-pane scripts">كول سنتر: "خلّيني أسهّلها لك" · مبيعات: "صورة نجاح" · AM: "إبراز إنجازك" · تقنية: "تجربة سلسة".</div><div class="v12-speed"><span style="width:78%"></span></div></div>
+          <div class="v12-disc-card s" onclick="toggleDiscCard(this)"><div class="bar"></div><h4>🟢 المستقر (S)</h4><div class="v12-tabs"><button onclick="switchDiscTab(event,this,'detect')">التعرف</button><button onclick="switchDiscTab(event,this,'deal')">التعامل</button><button onclick="switchDiscTab(event,this,'scripts')">السكريبتات</button></div><div class="v12-pane detect active">يتأنى ويسأل كثيرًا. جمل: أتأكد أولاً، هل فيه ضمان؟ خلنا خطوة خطوة. إشارات: هدوء، طلب طمأنة، تجنب المخاطرة.</div><div class="v12-pane deal">جملة الفتح: "نمشي بهدوء وبضمان واضح". الخطأ القاتل: الضغط والإحراج.</div><div class="v12-pane scripts">كول سنتر: "أنا معك للنهاية" · مبيعات: "خطة آمنة" · AM: "دعم مستمر" · تقنية: "توثيق واضح".</div><div class="v12-speed"><span style="width:52%"></span></div></div>
+          <div class="v12-disc-card c" onclick="toggleDiscCard(this)"><div class="bar"></div><h4>🔵 الدقيق (C)</h4><div class="v12-tabs"><button onclick="switchDiscTab(event,this,'detect')">التعرف</button><button onclick="switchDiscTab(event,this,'deal')">التعامل</button><button onclick="switchDiscTab(event,this,'scripts')">السكريبتات</button></div><div class="v12-pane detect active">يطلب أرقامًا ومقارنات. جمل: الدليل؟ كم النسبة؟ ما الفرق؟ إشارات: لغة منطقية، تدقيق، أسئلة معيارية.</div><div class="v12-pane deal">جملة الفتح: "هذه الأرقام قبل/بعد بمرجع واضح". الخطأ القاتل: تعميم بلا بيانات.</div><div class="v12-pane scripts">كول سنتر: "SLA محدد" · مبيعات: "مقارنة موثقة" · AM: "KPIs" · تقنية: "Benchmark".</div><div class="v12-speed"><span style="width:38%"></span></div></div>
+        </div>
+        <table class="matrix-ref-table" style="margin-top:16px;"><thead><tr><th>النمط</th><th>الدفاع الأكثر شيوعاً</th></tr></thead><tbody><tr><td>D</td><td>الإنكار + الإزاحة</td></tr><tr><td>I</td><td>التبرير + الإسقاط</td></tr><tr><td>S</td><td>الكبت + التجنب</td></tr><tr><td>C</td><td>التثقيل المعرفي + العقلنة</td></tr></tbody></table>
+      </div>
+
     </section><!-- /page-psych -->
+
+    
+    <style>
+    /* v12-ADD:GLOBAL */
+    .v12-disc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.v12-disc-card{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:14px;cursor:pointer;max-height:120px;overflow:hidden;transition:.3s}.v12-disc-card.open{max-height:460px}.v12-disc-card .bar{height:4px;border-radius:8px;margin-bottom:8px}.v12-disc-card.d .bar{background:#ef4444}.v12-disc-card.i .bar{background:#eab308}.v12-disc-card.s .bar{background:#22c55e}.v12-disc-card.c .bar{background:#3b82f6}.v12-tabs{display:flex;gap:6px;margin:8px 0}.v12-tabs button{background:var(--surface-3);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:4px 8px}.v12-pane{display:none;font-size:12px;line-height:1.8}.v12-pane.active{display:block}.v12-speed{height:8px;background:var(--surface-3);border-radius:99px;margin-top:10px}.v12-speed span{display:block;height:100%;background:linear-gradient(90deg,#ef4444,#22c55e);border-radius:99px}
+    .v12-test-modal{position:fixed;inset:0;background:rgba(9,12,20,.66);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:9999}.v12-test-modal.open{display:flex}.v12-test-box{width:min(760px,92vw);max-height:88vh;overflow:auto;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px}.v12-progress{height:8px;background:var(--surface-3);border-radius:99px;margin:8px 0 14px}.v12-progress span{display:block;height:100%;background:var(--accent);border-radius:99px}
+    </style>
 
     <style>
     /* ── Psych page role-tab scripts ── */
@@ -10216,5 +10236,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
-</body>
+<div class="v12-test-modal" id="v12-test-modal"><div class="v12-test-box"><div style="display:flex;justify-content:space-between"><h3 id="v12-test-title">اختبر نفسك 🎯</h3><button class="btn btn-ghost" onclick="closeSelfTest()">إغلاق</button></div><div class="v12-progress"><span id="v12-test-progress" style="width:0%"></span></div><div id="v12-test-q"></div><div id="v12-test-a" style="display:grid;gap:8px;margin-top:10px"></div><div id="v12-test-feedback" style="margin-top:8px;font-size:12px"></div><button class="btn btn-primary" onclick="nextSelfTestQ()" style="margin-top:12px">التالي</button></div></div>
+<script>
+const v12Tests={default:[{q:'ما أهم خطوة قبل الرد؟',a:['فهم الدافع','الرد السريع','تغيير الموضوع'],c:0,why:'ابدأ بالفهم قبل الإقناع.'}]};let v12State={list:[],i:0,score:0};function getTestKey(){const p=document.querySelector('.page.active')?.id||'page-dashboard';return p;}function openSelfTest(){const k=getTestKey();const base=[...v12Tests.default];v12State={list:base,i:0,score:0};document.getElementById('v12-test-title').textContent='اختبر نفسك 🎯 — '+k;document.getElementById('v12-test-modal').classList.add('open');renderSelfTestQ();}function closeSelfTest(){document.getElementById('v12-test-modal').classList.remove('open');}function renderSelfTestQ(){const q=v12State.list[v12State.i];if(!q){document.getElementById('v12-test-q').innerHTML='النتيجة: '+v12State.score+'/'+v12State.list.length;document.getElementById('v12-test-a').innerHTML='';return;}document.getElementById('v12-test-q').textContent=q.q;document.getElementById('v12-test-feedback').textContent='';document.getElementById('v12-test-progress').style.width=((v12State.i)/v12State.list.length*100)+'%';const wrap=document.getElementById('v12-test-a');wrap.innerHTML='';q.a.forEach((t,idx)=>{const b=document.createElement('button');b.className='btn btn-ghost';b.textContent=t;b.onclick=()=>selectSelfAns(idx);wrap.appendChild(b);});}function selectSelfAns(idx){const q=v12State.list[v12State.i];const ok=idx===q.c;document.getElementById('v12-test-feedback').textContent=ok?'✅ صحيح':'❌ خطأ — '+q.why;document.getElementById('v12-test-feedback').style.color=ok?'#22c55e':'#ef4444';if(ok)v12State.score++;}function nextSelfTestQ(){v12State.i++;renderSelfTestQ();}
+function toggleDiscCard(el){el.classList.toggle('open')}function switchDiscTab(e,btn,key){e.stopPropagation();const card=btn.closest('.v12-disc-card');card.querySelectorAll('.v12-pane').forEach(p=>p.classList.remove('active'));card.querySelector('.v12-pane.'+key).classList.add('active');}
+document.getElementById('global-selftest-btn')?.addEventListener('click',openSelfTest);
+</script></body>
 </html>
