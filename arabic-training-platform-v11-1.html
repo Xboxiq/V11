@@ -2613,6 +2613,7 @@
     </div>
 
     <div class="topbar-actions">
+      <button class="btn btn-ghost" id="globalQuizBtn" onclick="openPageQuiz()">اختبر نفسك 🎯</button><!-- v12-ADD -->
 
       <div class="tb-btn" title="الإشعارات">
         <div class="tb-notif-dot"></div>
@@ -2886,6 +2887,8 @@
           </tbody>
         </table>
       </div>
+
+    <div class="card" id="v12Heatmap"><!-- v12-ADD --><h3>خريطة مهاراتك الحرارية</h3><div id="heatGrid" style="display:grid;grid-template-columns:repeat(8,1fr);gap:4px"></div><div class="card" style="margin-top:10px"><h4>تحدي اليوم 🎯</h4><p id="dailyChallenge">مهمة مرتبطة بآخر صفحة زرتها.</p><button class="btn btn-primary" onclick="completeDailyChallenge()">أنجزت التحدي</button></div></div>
 
     </section><!-- /page-dashboard -->
 
@@ -6196,6 +6199,19 @@
         </div>
       </div>
 
+    
+
+      <div class="card v12-disc-wrap"><!-- v12-ADD -->
+        <div class="v12-sec-title">🧭 بوصلة الشخصية — قراءة الزبون في ٦٠ ثانية</div>
+        <div class="v12-disc-grid">
+          <div class="v12-disc-card d" onclick="toggleDiscCard(this)"><div class="v12-disc-bar"></div><h3>🔴 النمط المسيطر (D)</h3><p>صوته: سريع، مقاطع، يريد الإجابة قبل السؤال.</p><div class="v12-disc-speed"><span style="width:92%"></span></div><div class="v12-disc-body"><p><b>الحافز الخفي:</b> السيطرة والنتائج الملموسة.</p><p><b>إشارات ٦٠ ثانية:</b> "اختصر"، "كم النتيجة؟"، "من المسؤول؟" + نبرة حادة/أسئلة قصيرة/استعجال.</p><p><b>الجملة المفتاحية:</b> خليني أعطيك القرار الأسرع بأقل مخاطرة.</p><p><b>الخطأ القاتل:</b> الإطالة والتفاصيل الزائدة.</p><p><b>سكريبتات:</b> كول سنتر: "خلال 30 ثانية أعطيك الحل" | مبيعات: "ROI مباشر خلال 90 يوم" | أكونت: "قرار اليوم يحفظ شروطك" | تقنية: "حل فوري + بديل احتياطي".</p></div></div>
+          <div class="v12-disc-card i" onclick="toggleDiscCard(this)"><div class="v12-disc-bar"></div><h3>🟡 النمط المعبّر (I)</h3><p>صوته: قصصي، ضاحك، يبحث عن الاعتراف.</p><div class="v12-disc-speed"><span style="width:74%"></span></div><div class="v12-disc-body"><p><b>الحافز:</b> الانتماء والاعتراف الاجتماعي.</p><p><b>إشارات:</b> "الناس شنو قالوا؟"، "أريد شيء يميّزني"، "احچيلي التجارب" + ضحك/خروج عن الموضوع/تفاعل عاطفي.</p><p><b>المفتاح:</b> هذا الخيار يطلعك بصورة ممتازة أمام فريقك.</p><p><b>الخطأ القاتل:</b> الرد البارد الجاف.</p><p><b>سكريبتات:</b> كول سنتر: "خلّها تجربة سلسة" | مبيعات: "قصص نجاح مشابهة" | أكونت: "نبرز إنجازكم" | تقنية: "حل سهل ويبان فرقه".</p></div></div>
+          <div class="v12-disc-card s" onclick="toggleDiscCard(this)"><div class="v12-disc-bar"></div><h3>🟢 النمط المستقر (S)</h3><p>صوته: هادئ، يسأل كثيراً، يريد التأكيد.</p><div class="v12-disc-speed"><span style="width:52%"></span></div><div class="v12-disc-body"><p><b>الحافز:</b> الأمان وعدم الخطأ.</p><p><b>إشارات:</b> "أحتاج أتأكد"، "شنو الخطة؟"، "ومن يدعمنا؟" + pauses/طلب تطمين/تفاصيل تطبيق.</p><p><b>المفتاح:</b> نمشي خطوة خطوة وما نخليك وحدك.</p><p><b>الخطأ القاتل:</b> الضغط الزمني العنيف.</p><p><b>سكريبتات:</b> كول سنتر: "أبقى وياك للنهاية" | مبيعات: "خطة تنفيذ واضحة" | أكونت: "متابعة أسبوعية" | تقنية: "دعم دائم".</p></div></div>
+          <div class="v12-disc-card c" onclick="toggleDiscCard(this)"><div class="v12-disc-bar"></div><h3>🔵 النمط الدقيق (C)</h3><p>صوته: يطلب أرقاماً وضمانات ومقارنات.</p><div class="v12-disc-speed"><span style="width:40%"></span></div><div class="v12-disc-body"><p><b>الحافز:</b> الصواب المنطقي والكمال.</p><p><b>إشارات:</b> "وين البيانات؟"، "شنو نسبة الخطأ؟"، "قارن لي" + تدقيق لغوي/هدوء/إعادة التحقق.</p><p><b>المفتاح:</b> هذه الأرقام هي أساس القرار الآمن.</p><p><b>الخطأ القاتل:</b> الوعود العامة بلا دليل.</p><p><b>سكريبتات:</b> كول سنتر: "توثيق مكتوب" | مبيعات: "Benchmark واضح" | أكونت: "SLA مقاس" | تقنية: "أدلة ونتائج اختبار".</p></div></div>
+        </div>
+        <table class="matrix-ref-table" style="margin-top:16px;"><thead><tr><th>النمط</th><th>الدفاعات الأكثر استخداماً</th></tr></thead><tbody><tr><td>🔴 D</td><td>الإنكار + الإزاحة عند الضغط</td></tr><tr><td>🟡 I</td><td>التبرير + التقمص الاجتماعي</td></tr><tr><td>🟢 S</td><td>التجنب + التراجع الآمن</td></tr><tr><td>🔵 C</td><td>التثقيل المعرفي + العقلنة</td></tr></tbody></table>
+      </div>
+
     </section><!-- /page-psych -->
 
     <style>
@@ -6629,6 +6645,8 @@
         </table>
       </div>
 
+    <div class="card" style="margin-top:18px;"><!-- v12-ADD --><h3>مقياس درجة الحرارة العاطفية</h3><input type="range" min="1" max="10" value="5" id="eqTemp" oninput="updateEqTemp(this.value)" style="width:100%"><div id="eqTempOut" style="margin-top:8px;color:var(--text-muted)">حالتك متوازنة.</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px"><div class="card">إدارة نفسك</div><div class="card">إدارة الزبون</div><div class="card">إدارة الفريق</div></div><table class="matrix-ref-table" style="margin-top:12px"><tr><th>الدور</th><th>استخدام EQ</th></tr><tr><td>كول سنتر</td><td>التهدئة السريعة</td></tr><tr><td>مبيعات</td><td>توجيه القرار</td></tr><tr><td>أكونت</td><td>حفظ العلاقة</td></tr><tr><td>تقنية</td><td>ضبط الانفعال تحت الضغط</td></tr></table></div>
+
     </section><!-- /page-eq -->
 
 
@@ -6862,6 +6880,8 @@
           </div>
         </div>
       </div>
+
+    <div class="card" style="margin-top:18px;"><!-- v12-ADD --><h3>حاسبة BATNA التفاعلية</h3><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px"><input id="batnaCurrent" placeholder="قيمتك الحالية" type="number" class="input"><input id="batnaAlt" placeholder="بديلك الأفضل" type="number" class="input"><input id="batnaOther" placeholder="قيمة الطرف الآخر" type="number" class="input"></div><button class="btn btn-primary" style="margin-top:8px" onclick="calcBatna()">احسب</button><div id="batnaOut" style="margin-top:8px;color:var(--text-muted)"></div><h4 style="margin-top:12px">خريطة ديناميكيات القوة</h4><div id="powerMap"></div></div>
 
     </section><!-- /page-negotiation -->
 
@@ -10216,5 +10236,23 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
+
+<style>/* v12-ADD */
+.v12-disc-wrap{margin-top:26px;padding:18px}.v12-sec-title{font-weight:900;margin-bottom:14px}.v12-disc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.v12-disc-card{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:12px;cursor:pointer}.v12-disc-bar{height:4px;border-radius:6px;margin:-12px -12px 10px}.v12-disc-card.d .v12-disc-bar{background:#ef4444}.v12-disc-card.i .v12-disc-bar{background:#eab308}.v12-disc-card.s .v12-disc-bar{background:#22c55e}.v12-disc-card.c .v12-disc-bar{background:#3b82f6}.v12-disc-body{display:none;font-size:12px;color:var(--text-muted)}.v12-disc-card.open .v12-disc-body{display:block}.v12-disc-speed{height:7px;background:var(--surface-3);border-radius:999px;overflow:hidden;margin:8px 0}.v12-disc-speed span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),#22c55e)}
+.v12-quiz-modal{position:fixed;inset:0;background:rgba(2,6,23,.72);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:2500}.v12-quiz-box{width:min(760px,92vw);max-height:85vh;overflow:auto;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px}
+</style>
+<div class="v12-quiz-modal" id="v12QuizModal"><div class="v12-quiz-box"><div style="display:flex;justify-content:space-between;align-items:center"><h3 id="v12QuizTitle">اختبر نفسك</h3><button class="btn btn-ghost" onclick="closePageQuiz()">إغلاق</button></div><div id="v12QuizContent"></div></div></div>
+<script>/* v12-ADD */
+function toggleDiscCard(el){el.classList.toggle('open')}
+const V12_QUIZ_BANK={"page-callcenter":[{q:"عميل غاضب قال: أنتم لا تفهمون!",a:["أفهم انزعاجك ونحلها الآن","هذا ليس خطأنا","ارجع لاحقاً"],c:0,e:"ابدأ بالاحتواء ثم الحل."}],"page-fieldsales":[{q:"اعتراض سعر في زيارة ميدانية؟",a:["اربطه بالعائد","خفض فوري بلا سبب","تجنب الرد"],c:0,e:"المنطقي+العاطفي المتزن يغلق أفضل."}],"page-psych":[{q:"عميل يبرر كل تأخير رغم الضرر. الدفاع؟",a:["تبرير","إنكار","إسقاط"],c:0,e:"تبرير لتخفيف التوتر الداخلي."}],"page-eq":[{q:"أفضل رد عند توترك 8/10؟",a:["Pause 90 ثانية","قرار فوري","لوم الفريق"],c:0,e:"تنظيم الذات أولاً."}],"page-negotiation":[{q:"BATNA أعلى من العرض الحالي يعني؟",a:["قوة تفاوضية أفضل","ضعف","لا فرق"],c:0,e:"كلما قوي بديلك تحسن موقفك."}]};
+function openPageQuiz(){const p=document.querySelector('.page.active')?.id||'page-callcenter';const data=V12_QUIZ_BANK[p]||[{q:'سؤال سريع',a:['A','B','C'],c:0,e:'مرجع الصفحة.'}];document.getElementById('v12QuizModal').style.display='flex';document.getElementById('v12QuizTitle').textContent='اختبر نفسك 🎯 — '+(document.getElementById('topbar-title')?.textContent||'');let score=0,html='';data.forEach((it,qi)=>{html+=`<div style="margin:12px 0;padding:12px;border:1px solid var(--border);border-radius:10px"><b>${qi+1}) ${it.q}</b>`+it.a.map((op,i)=>`<label style="display:block;margin-top:8px"><input type="radio" name="q${qi}" value="${i}"> ${op}</label>`).join('')+`<div class="exp" style="display:none;color:#22c55e;font-size:12px;margin-top:6px">${it.e}</div></div>`});html+=`<button class="btn btn-primary" onclick="submitV12Quiz('${p}',${data.length})">إنهاء الاختبار</button><div id="v12QuizResult" style="margin-top:10px"></div>`;document.getElementById('v12QuizContent').innerHTML=html;}
+function submitV12Quiz(p,n){const data=V12_QUIZ_BANK[p];let s=0;data.forEach((it,qi)=>{const ch=document.querySelector('input[name=q'+qi+']:checked');const exp=document.querySelectorAll('#v12QuizContent .exp')[qi];if(ch&&+ch.value===it.c){s++;exp.style.color='#22c55e';}else{exp.style.display='block';exp.style.color='#ef4444';}});document.getElementById('v12QuizResult').innerHTML='النتيجة: '+s+'/'+n+' — '+(s/n>=.7?'ممتاز':'نقطة ضعفك: راجع السكربتات');}
+function closePageQuiz(){document.getElementById('v12QuizModal').style.display='none'}
+function updateEqTemp(v){const o=document.getElementById('eqTempOut');if(!o)return;o.textContent=v>=8?'توتر مرتفع: طبّق تنفس + تأجيل قرار 10 دقائق.':v>=5?'حالة متوسطة: استخدم أسئلة استيضاح قبل الرد.':'هدوء ممتاز: وقت مناسب للقرارات الصعبة.';}
+function calcBatna(){const c=+document.getElementById('batnaCurrent')?.value||0,a=+document.getElementById('batnaAlt')?.value||0,o=+document.getElementById('batnaOther')?.value||0;const z=Math.max(c,a);const st=z>o?'موقفك قوي':(z===o?'موقف متوازن':'موقفك ضعيف');document.getElementById('batnaOut').textContent=`ZOPA التقريبي: ${Math.min(z,o)} - ${Math.max(z,o)} | ${st}`;const pm=['بدائل','وقت','معلومة','تحالفات','الميزانية'];document.getElementById('powerMap').innerHTML=pm.map((x,i)=>`<div>${x}<input type=range min=1 max=10 value=${6-i}></div>`).join('');}
+(function initHeat(){const g=document.getElementById('heatGrid');if(!g)return;for(let i=0;i<64;i++){const v=+localStorage.getItem('heat_'+i)||Math.ceil(Math.random()*3);const d=document.createElement('button');d.style.height='20px';d.style.border='0';d.style.borderRadius='4px';d.style.background=v===3?'#166534':v===2?'#eab308':'#dc2626';d.onclick=()=>navigateTo(['page-callcenter','page-fieldsales','page-psych','page-eq','page-negotiation'][i%5]);g.appendChild(d);}const last=localStorage.getItem('last_page')||'لوحة التحكم';const el=document.getElementById('dailyChallenge');if(el)el.textContent='اليوم: طبّق سيناريو عملي مرتبط بآخر صفحة زرتها ('+last+').';})();
+function completeDailyChallenge(){localStorage.setItem('daily_done',Date.now());alert('رائع! تم تحديث تقدمك.');}
+</script>
+
 </body>
 </html>
