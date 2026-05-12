@@ -2421,7 +2421,10 @@
     }
     #mobile-menu-btn svg { width: 18px; height: 18px; }
 
-  </style>
+  
+.v12-disc-compass .disc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.disc-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px;cursor:pointer;max-height:170px;overflow:hidden;transition:.25s}.disc-card.open{max-height:520px}.disc-top{height:5px;border-radius:10px;margin-bottom:8px}.disc-card.d .disc-top{background:#ef4444}.disc-card.i .disc-top{background:#eab308}.disc-card.s .disc-top{background:#22c55e}.disc-card.c .disc-top{background:#3b82f6}.disc-pane{display:none;font-size:12px;color:var(--text-muted);margin-top:8px}.disc-pane.active{display:block}.disc-tabs{display:flex;gap:6px;flex-wrap:wrap}.disc-tabs button{background:var(--surface-2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:4px 8px}.heatmap-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:4px}.heat-cell{height:24px;border-radius:4px;cursor:pointer}
+#quiz-modal{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;z-index:9999}#quiz-modal .inner{width:min(760px,94vw);background:var(--panel);border:1px solid var(--border-hover);border-radius:12px;padding:14px}
+</style>
 </head>
 <body>
 
@@ -2613,6 +2616,7 @@
     </div>
 
     <div class="topbar-actions">
+      <button class="icon-btn" id="open-global-quiz" title="اختبر نفسك">اختبر نفسك 🎯</button>
 
       <div class="tb-btn" title="الإشعارات">
         <div class="tb-notif-dot"></div>
@@ -2886,6 +2890,10 @@
           </tbody>
         </table>
       </div>
+
+    
+      <!-- v12-ADD: dashboard heatmap -->
+      <div class="card" id="skills-heatmap-card"><h3>🔥 خريطة مهاراتك الحرارية</h3><div id="skills-heatmap" class="heatmap-grid"></div><div style="margin-top:10px"><strong>تحدي اليوم 🎯</strong><div id="daily-challenge"></div><button class="btn" onclick="completeChallenge()">أنجزت التحدي</button></div></div>
 
     </section><!-- /page-dashboard -->
 
@@ -6196,6 +6204,10 @@
         </div>
       </div>
 
+    
+      <!-- v12-ADD: DISC Compass -->
+      <div class="card v12-disc-compass" id="disc-compass"><div class="insight-head"><h3>🧭 بوصلة الشخصية — قراءة الزبون في ٦٠ ثانية</h3><p>حدد النمط بسرعة ثم انتقل للتعامل المناسب.</p></div><div class="disc-grid"><div class="disc-card d" onclick="toggleDiscCard(this)"><div class="disc-top"></div><h4>🔴 المسيطر (D)</h4><div class="disc-speed"><span>سرعة القرار</span><div class="progress-bar"><div class="progress-fill" style="width:88%;background:#ef4444"></div></div></div><div class="disc-tabs"><button onclick="event.stopPropagation();showDiscTab(this,'d-rec')">التعرف</button><button onclick="event.stopPropagation();showDiscTab(this,'d-handle')">التعامل</button><button onclick="event.stopPropagation();showDiscTab(this,'d-script')">السكريبتات</button></div><div class="disc-pane d-rec active">يتكلم بسرعة ويقاطع. جمل شائعة: "ادخل بالموضوع"، "كم النتيجة؟"، "لا تضيع وقتي".</div><div class="disc-pane d-handle">المحفز: السيطرة والنتائج. الجملة المفتاحية: "أعطيك الخلاصة الآن". الخطأ القاتل: التردد وكثرة التفاصيل.</div><div class="disc-pane d-script">كول سنتر: "بنهيها بدقيقتين" | مبيعات: "ROI واضح" | AM: "خطة تنفيذ" | تقنية: "حل مباشر بضمان".</div></div><div class="disc-card i" onclick="toggleDiscCard(this)"><div class="disc-top"></div><h4>🟡 المعبّر (I)</h4><div class="disc-speed"><span>سرعة القرار</span><div class="progress-bar"><div class="progress-fill" style="width:72%;background:#eab308"></div></div></div><div class="disc-tabs"><button onclick="event.stopPropagation();showDiscTab(this,'i-rec')">التعرف</button><button onclick="event.stopPropagation();showDiscTab(this,'i-handle')">التعامل</button><button onclick="event.stopPropagation();showDiscTab(this,'i-script')">السكريبتات</button></div><div class="disc-pane i-rec active">يحكي قصص ويضحك. جمل: "فهمتني؟"، "أحب التعامل المرن"، "خلها لطيفة".</div><div class="disc-pane i-handle">المحفز: الاعتراف والانتماء. افتح الباب: "فكرتك ذكية ونقدر نظهرها". الخطأ القاتل: البرود الرسمي.</div><div class="disc-pane i-script">كول سنتر: "نخلي تجربتك مميزة" | مبيعات: "قصة نجاح" | AM: "نبرز إنجازكم" | تقنية: "نخلي الحل سهل وممتع".</div></div><div class="disc-card s" onclick="toggleDiscCard(this)"><div class="disc-top"></div><h4>🟢 المستقر (S)</h4><div class="disc-speed"><span>سرعة القرار</span><div class="progress-bar"><div class="progress-fill" style="width:54%;background:#22c55e"></div></div></div><div class="disc-tabs"><button onclick="event.stopPropagation();showDiscTab(this,'s-rec')">التعرف</button><button onclick="event.stopPropagation();showDiscTab(this,'s-handle')">التعامل</button><button onclick="event.stopPropagation();showDiscTab(this,'s-script')">السكريبتات</button></div><div class="disc-pane s-rec active">يسأل للتأكيد. جمل: "تتأكد؟"، "وش الضمان؟"، "أحتاج وقت".</div><div class="disc-pane s-handle">المحفز: الأمان. الافتتاح: "بنمشي خطوة بخطوة". الخطأ القاتل: الضغط للإغلاق السريع.</div><div class="disc-pane s-script">كول سنتر: "أنا معك للنهاية" | مبيعات: "تجربة آمنة" | AM: "خطة متابعة" | تقنية: "شرح بدون تعقيد".</div></div><div class="disc-card c" onclick="toggleDiscCard(this)"><div class="disc-top"></div><h4>🔵 الدقيق (C)</h4><div class="disc-speed"><span>سرعة القرار</span><div class="progress-bar"><div class="progress-fill" style="width:41%;background:#3b82f6"></div></div></div><div class="disc-tabs"><button onclick="event.stopPropagation();showDiscTab(this,'c-rec')">التعرف</button><button onclick="event.stopPropagation();showDiscTab(this,'c-handle')">التعامل</button><button onclick="event.stopPropagation();showDiscTab(this,'c-script')">السكريبتات</button></div><div class="disc-pane c-rec active">يطلب أرقاماً ومقارنات. جمل: "ما الدليل؟"، "أرسل جدول"، "وش نسبة الخطأ؟".</div><div class="disc-pane c-handle">المحفز: الصواب المنطقي. الافتتاح: "هذه البيانات أمامك". الخطأ القاتل: الكلام الإنشائي.</div><div class="disc-pane c-script">كول سنتر: "3 خيارات مقارنة" | مبيعات: "TCO/ROI" | AM: "SLA واضح" | تقنية: "تشخيص موثق".</div></div></div><table class="data-table" style="margin-top:14px"><thead><tr><th>النمط</th><th>الدفاعات الأكثر استخداماً</th><th>مؤشر تدخل مناسب</th></tr></thead><tbody><tr><td>🔴 D</td><td>الإنكار + الإزاحة</td><td>أسئلة نتيجة مباشرة</td></tr><tr><td>🟡 I</td><td>التبرير + الإسقاط</td><td>عكس المشاعر ثم التوجيه</td></tr><tr><td>🟢 S</td><td>التجنب + التكوين العكسي</td><td>تطمين تدريجي</td></tr><tr><td>🔵 C</td><td>التثقيل المعرفي + العقلنة</td><td>بيانات + قرار مرحلي</td></tr></tbody></table></div>
+
     </section><!-- /page-psych -->
 
     <style>
@@ -6214,7 +6226,20 @@
       document.querySelectorAll('#page-psych .psych-acc-item.open').forEach(i => i.classList.remove('open'));
       if (!isOpen) item.classList.add('open');
     }
-    </script>
+    
+const QUIZ_BANK={callcenter:[{q:'العميل قال: انتو غالين. أفضل رد؟',o:['نغلق بسرعة','أفهمك وخليني أوضح القيمة','هذا سعر نهائي'],a:1,e:'ابدأ بالتعاطف ثم القيمة.'}],fieldsales:[{q:'اعتراض على السعر؟',o:['خصم مباشر','ربط ROI','إنهاء المكالمة'],a:1,e:'المنطق المالي أقوى.'}],psych:[{q:'عميل يبرر كل شيء لحماية صورته، الدفاع؟',o:['تبرير','إنكار','إزاحة'],a:0,e:'هذا تبرير واضح.'}],default:[{q:'سؤال سريع',o:['أ','ب','ج'],a:0,e:'الإجابة أ'}]};
+function toggleDiscCard(el){el.classList.toggle('open')}
+function showDiscTab(btn,key){const card=btn.closest('.disc-card');card.querySelectorAll('.disc-pane').forEach(p=>p.classList.remove('active'));card.querySelector('.'+key).classList.add('active')}
+function openQuizForPage(){const act=document.querySelector('.page.active')?.id?.replace('page-','')||'default';startMiniQuiz(act)}
+document.getElementById('open-global-quiz')?.addEventListener('click',openQuizForPage);
+function startMiniQuiz(page){let bank=QUIZ_BANK[page]||QUIZ_BANK.default;const m=document.getElementById('quiz-modal')||(()=>{const d=document.createElement('div');d.id='quiz-modal';d.innerHTML='<div class="inner"><div id="quiz-body"></div><button class="btn" onclick="document.getElementById('quiz-modal').style.display='none'">إغلاق</button></div>';document.body.appendChild(d);return d;})();let i=0,s=0;const r=()=>{const q=bank[i];document.getElementById('quiz-body').innerHTML=`<div>${i+1}/${bank.length}</div><h4>${q.q}</h4>${q.o.map((x,ix)=>`<button class='btn' onclick='miniAns(${ix})'>${x}</button>`).join(' ')}`;window.miniAns=(ix)=>{if(ix===q.a)s++;alert(ix===q.a?'✅ صحيح':'❌ '+q.e);i++; if(i<bank.length)r(); else document.getElementById('quiz-body').innerHTML=`نتيجتك ${s}/${bank.length}`};};r();m.style.display='flex';}
+function updateEQTemp(v){const state=document.getElementById('eq-temp-state');state.textContent=v<=3?'توتر مرتفع: خفّض الإيقاع والتنفس.':v<=7?'حالة متوسطة: ركّز على الإصغاء.':'هدوء ممتاز: قد المحادثة.';document.getElementById('eq-temp-cards').innerHTML=['إدارة نفسك','إدارة الزبون','إدارة الفريق'].map(t=>`<div class="psych-info-block">${t}</div>`).join('')}
+function calcBatna(){const a=+document.getElementById('batna-a').value,b=+document.getElementById('batna-b').value,o=+document.getElementById('batna-o').value;const z=`ZOPA: ${Math.min(a,o)} - ${Math.max(b,o)}`;document.getElementById('batna-out').textContent=`${z} | موقفك ${a>b?'قوي':'ضعيف'} | التوصية: ${a>b?'ثبّت القيمة':'حسّن البديل'}`;const factors=['الوقت','البدائل','المعلومة','العلاقة','الشرعية'];document.getElementById('power-map').innerHTML=factors.map(f=>`<label>${f}<input type='range' min='1' max='10' value='5' oninput='evalPower()'></label>`).join('');evalPower()}
+function evalPower(){let t=0,c=0;document.querySelectorAll('#power-map input').forEach(i=>{t+=+i.value;c++});const avg=t/c;document.getElementById('batna-out').dataset.power=avg}
+function initHeatmap(){const box=document.getElementById('skills-heatmap');if(!box)return;const pages=['dashboard','callcenter','fieldsales','social','lab','psych','eq','negotiation'];for(let i=0;i<64;i++){const d=document.createElement('div');const val=+localStorage.getItem('heat-'+i)||Math.ceil(Math.random()*3);d.className='heat-cell';d.style.background=val===3?'#166534':val===2?'#eab308':'#b91c1c';d.onclick=()=>navigateTo(pages[i%pages.length]);box.appendChild(d);}document.getElementById('daily-challenge').textContent='راجع آخر مهارة زرتها وطبّق سيناريو واحد.'}
+function completeChallenge(){localStorage.setItem('last-challenge',Date.now());initHeatmap()}
+document.addEventListener('DOMContentLoaded',()=>{updateEQTemp(5);initHeatmap();});
+</script>
 
     <style>
       /* ============ SIM-SPECIFIC STYLES ============ */
@@ -6629,6 +6654,10 @@
         </table>
       </div>
 
+    
+      <!-- v12-ADD: EQ temperature -->
+      <div class="card"><h3>🌡️ مقياس درجة الحرارة العاطفية</h3><input id="eq-temp" type="range" min="1" max="10" value="5" oninput="updateEQTemp(this.value)" style="width:100%"><div id="eq-temp-state" style="margin-top:8px;color:var(--text-muted)"></div><div class="disc-grid" id="eq-temp-cards"></div><table class="data-table" style="margin-top:12px"><thead><tr><th>الدور</th><th>تطبيق EQ</th></tr></thead><tbody><tr><td>كول سنتر</td><td>خفض التصعيد أولاً</td></tr><tr><td>مبيعات</td><td>موازنة الحماس بالثقة</td></tr><tr><td>أكونت منجر</td><td>إدارة توقعات الأطراف</td></tr><tr><td>تقنية</td><td>وضوح هادئ تحت الضغط</td></tr></tbody></table></div>
+
     </section><!-- /page-eq -->
 
 
@@ -6862,6 +6891,10 @@
           </div>
         </div>
       </div>
+
+    
+      <!-- v12-ADD: BATNA -->
+      <div class="card"><h3>🧮 حاسبة BATNA</h3><div class="disc-grid"><div><label>قيمتك الحالية</label><input id="batna-a" type="number" value="100"></div><div><label>بديلك الأفضل</label><input id="batna-b" type="number" value="80"></div><div><label>قيمة الطرف الآخر</label><input id="batna-o" type="number" value="120"></div><div><button class="btn" onclick="calcBatna()">احسب</button></div></div><div id="batna-out" style="margin-top:10px"></div><h4 style="margin-top:12px">خريطة ديناميكيات القوة</h4><div id="power-map"></div></div>
 
     </section><!-- /page-negotiation -->
 
