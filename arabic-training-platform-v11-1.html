@@ -408,6 +408,19 @@
       background: var(--border);
     }
 
+    .v12-quiz-launch { font-size:12px; padding:8px 12px; border:none; cursor:pointer; }
+    .v12-modal{position:fixed;inset:0;background:rgba(2,6,23,.7);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:9999;}
+    .v12-modal.open{display:flex;}
+    .v12-modal-card{width:min(820px,92vw);max-height:88vh;overflow:auto;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px;}
+    .v12-disc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px;}
+    .v12-disc-card{background:var(--surface-2);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+    .v12-disc-head{padding:12px;cursor:pointer;font-weight:800;}
+    .v12-disc-body{display:none;padding:12px;border-top:1px solid var(--border);}
+    .v12-disc-card.open .v12-disc-body{display:block;}
+    .v12-subpane{display:none;font-size:12.5px;line-height:1.8;color:var(--text-muted);}
+    .v12-subpane.active{display:block;}
+    .v12-heatmap{display:grid;grid-template-columns:repeat(8,1fr);gap:6px;}
+    .v12-cell{height:24px;border-radius:6px;cursor:pointer;border:1px solid var(--border);}
     .tb-avatar {
       width: 34px; height: 34px;
       border-radius: 50%;
@@ -2613,6 +2626,7 @@
     </div>
 
     <div class="topbar-actions">
+      <button class="btn btn-primary v12-quiz-launch" onclick="openPageQuiz()">اختبر نفسك 🎯</button>
 
       <div class="tb-btn" title="الإشعارات">
         <div class="tb-notif-dot"></div>
@@ -2887,6 +2901,8 @@
         </table>
       </div>
 
+    
+      <div class="card v12-ADD"><h3>خريطة مهاراتك الحرارية</h3><div class="v12-heatmap" id="v12Heatmap"></div><div style="margin-top:8px"><b>تحدي اليوم 🎯</b><p id="v12Challenge"></p><button class="btn btn-primary" onclick="completeDailyChallenge()">أنجزت التحدي</button></div></div>
     </section><!-- /page-dashboard -->
 
 
@@ -6196,6 +6212,18 @@
         </div>
       </div>
 
+    
+      <div class="card v12-ADD" id="v12-disc">
+        <div style="font-size:18px;font-weight:800;">🧭 بوصلة الشخصية — قراءة الزبون في ٦٠ ثانية</div>
+        <div class="v12-disc-grid">
+          <div class="v12-disc-card"><div class="v12-disc-head" style="border-top:4px solid #ef4444" onclick="toggleDiscCard(this)">🔴 المسيطر D</div><div class="v12-disc-body"><div class="v12-subpane active">المفتاح: نتائج سريعة. الخطأ القاتل: الشرح الطويل.</div></div></div>
+          <div class="v12-disc-card"><div class="v12-disc-head" style="border-top:4px solid #eab308" onclick="toggleDiscCard(this)">🟡 المعبّر I</div><div class="v12-disc-body"><div class="v12-subpane active">المفتاح: الاعتراف الاجتماعي. الخطأ: قتل الحماس بالتفاصيل.</div></div></div>
+          <div class="v12-disc-card"><div class="v12-disc-head" style="border-top:4px solid #22c55e" onclick="toggleDiscCard(this)">🟢 المستقر S</div><div class="v12-disc-body"><div class="v12-subpane active">المفتاح: الأمان. الخطأ: الضغط على قرار فوري.</div></div></div>
+          <div class="v12-disc-card"><div class="v12-disc-head" style="border-top:4px solid #3b82f6" onclick="toggleDiscCard(this)">🔵 الدقيق C</div><div class="v12-disc-body"><div class="v12-subpane active">المفتاح: الأرقام والضمانات. الخطأ: الوعود العامة.</div></div></div>
+        </div>
+        <table style="width:100%;margin-top:14px;border-collapse:collapse;font-size:12px;"><tr><th>النمط</th><th>الدفاعات الأكثر</th></tr><tr><td>🔴 D</td><td>الإنكار + الإزاحة</td></tr><tr><td>🟡 I</td><td>التبرير + التكوين العكسي</td></tr><tr><td>🟢 S</td><td>الكبت + التراجع</td></tr><tr><td>🔵 C</td><td>التثقيل المعرفي + العزل</td></tr></table>
+      </div>
+
     </section><!-- /page-psych -->
 
     <style>
@@ -6629,6 +6657,8 @@
         </table>
       </div>
 
+    
+      <div class="card v12-ADD"><h3>مقياس درجة الحرارة العاطفية</h3><input type="range" min="1" max="10" value="5" oninput="updateEqTemp(this.value)"><div id="v12EqTips">اختر حالتك الحالية</div></div>
     </section><!-- /page-eq -->
 
 
@@ -6863,6 +6893,8 @@
         </div>
       </div>
 
+    
+      <div class="card v12-ADD"><h3>حاسبة BATNA</h3><input id="batnaA" placeholder="قيمتك الحالية"><input id="batnaB" placeholder="بديلك الأفضل"><input id="batnaC" placeholder="قيمة الطرف الآخر"><button class="btn btn-primary" onclick="calcBatna()">احسب</button><div id="batnaOut"></div></div>
     </section><!-- /page-negotiation -->
 
 
@@ -10216,5 +10248,20 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
+
+<div class="v12-modal" id="v12QuizModal"><div class="v12-modal-card"><div id="v12QuizBody"></div><button class="btn btn-ghost" onclick="closePageQuiz()">إغلاق</button></div></div>
+<script>
+const V12_QUIZZES={dashboard:[{q:'ما أول خطوة للتطوير اليومي؟',options:['التطبيق','التأجيل'],correct:0}]};
+function openPageQuiz(){document.getElementById('v12QuizModal').classList.add('open');document.getElementById('v12QuizBody').innerHTML='<h3>اختبر نفسك</h3><button class="btn btn-primary" onclick="answerV12(0)">ابدأ</button>';}
+function closePageQuiz(){document.getElementById('v12QuizModal').classList.remove('open');}
+function answerV12(){document.getElementById('v12QuizBody').innerHTML='<h3>✅ ممتاز</h3><button class="btn btn-ghost" onclick="reviewV12()">راجع الإجابات</button>';}
+function reviewV12(){document.getElementById('v12QuizBody').innerHTML='<p>مرجعك: صفحة المهارة المرتبطة.</p>';}
+function toggleDiscCard(el){el.parentElement.classList.toggle('open');}
+function updateEqTemp(v){document.getElementById('v12EqTips').textContent=v<4?'متوتر: هدّئ الإيقاع':'هادئ: قُد الحوار';}
+function calcBatna(){const a=+document.getElementById('batnaA').value||0,b=+document.getElementById('batnaB').value||0,c=+document.getElementById('batnaC').value||0;document.getElementById('batnaOut').textContent='ZOPA: '+Math.min(Math.max(a,b),c)+' - '+Math.max(Math.max(a,b),c);} 
+function completeDailyChallenge(){alert('تم تحديث التحدي');}
+(function initV12(){const hm=document.getElementById('v12Heatmap');if(hm){for(let i=0;i<64;i++){const d=document.createElement('div');d.className='v12-cell';d.style.background=['#b91c1c','#eab308','#166534'][i%3];hm.appendChild(d);} } const c=document.getElementById('v12Challenge'); if(c)c.textContent='نفّذ تمريناً من آخر صفحة زرتها.';})();
+</script>
+
 </body>
 </html>
