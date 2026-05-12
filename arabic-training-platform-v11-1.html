@@ -2421,7 +2421,45 @@
     }
     #mobile-menu-btn svg { width: 18px; height: 18px; }
 
-  </style>
+  
+/* ===== PART 1 — Defense Mechanisms Matrix ===== */
+.defense-lab-wrap{margin-top:16px;border:1px solid var(--border);border-radius:var(--radius-lg);background:linear-gradient(160deg,rgba(102,252,241,.03),rgba(8,11,20,.75));padding:16px}
+.defense-lab-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:14px}
+.defense-lab-head h3{font-size:15px;color:var(--text)}
+.defense-lab-head p{font-size:12px;color:var(--text-muted)}
+.defense-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.defense-card{border:1px solid var(--border);border-radius:12px;background:var(--surface-2);padding:12px;cursor:pointer;transition:var(--transition)}
+.defense-card:hover,.defense-card.active{border-color:var(--border-hover);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.defense-kicker{font-size:10px;color:var(--accent);letter-spacing:.8px}
+.defense-card h4{margin:4px 0 6px;font-size:13px}
+.defense-card p{font-size:12px;color:var(--text-muted);line-height:1.6}
+.defense-panel{margin-top:12px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.defense-box{border:1px solid var(--border);background:var(--surface);border-radius:10px;padding:10px}
+.defense-box .label{font-size:10px;color:var(--text-faint);margin-bottom:4px}
+.defense-box .txt{font-size:12px;color:var(--text-muted);line-height:1.7}
+.defense-box.script .txt{color:#BBF7D0}
+@media (max-width:900px){.defense-panel{grid-template-columns:1fr}}
+
+
+.phase-block{margin-top:14px;border:1px solid var(--border);border-radius:12px;background:rgba(10,15,28,.6);padding:12px}
+.phase-title{font-size:14px;font-weight:800;color:var(--text);margin-bottom:8px}
+.plutchik-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.plutchik-node{border:1px solid var(--border);background:var(--surface-2);border-radius:10px;padding:10px;cursor:pointer}
+.plutchik-node.active,.plutchik-node:hover{border-color:var(--border-hover)}
+.plutchik-node .emo{font-size:12px;color:var(--text)}
+.plutchik-node .trg{font-size:11px;color:var(--text-muted)}
+.mix-panel{margin-top:10px;display:grid;grid-template-columns:1.1fr .9fr;gap:10px}
+.mix-box{border:1px solid var(--border);border-radius:10px;padding:10px;background:var(--surface)}
+.mix-box .k{font-size:10px;color:var(--text-faint)}
+.mix-box .v{font-size:12px;color:var(--text-muted);line-height:1.7}
+.script-matrix{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.script-card{border:1px solid var(--border);background:var(--surface-2);border-radius:10px;padding:10px}
+.script-card h5{font-size:12px;color:var(--text);margin-bottom:5px}
+.script-card p{font-size:12px;color:var(--text-muted)}
+.script-card .bad{color:#FCA5A5}.script-card .good{color:#86EFAC}
+@media (max-width:900px){.plutchik-grid,.script-matrix,.mix-panel{grid-template-columns:1fr}}
+
+</style>
 </head>
 <body>
 
@@ -3596,6 +3634,38 @@
           </div>
 
         </div><!-- end psych-accordion -->
+
+      <div class="defense-lab-wrap">
+        <div class="defense-lab-head">
+          <div>
+            <h3>الجزء ١ — مصفوفة آليات الدفاع اللاشعورية (العميل × الموظف)</h3>
+            <p>اختر بطاقة واحدة: نفس الآلية تظهر بسلوك مختلف بين العميل والموظف. الهدف: رصد الآلية ثم اختراقها تكتيكياً.</p>
+          </div>
+          <span class="tag blue">Freud + Cialdini + Chris Voss + NLP</span>
+        </div>
+        <div class="defense-grid" id="defenseGrid"></div>
+        <div class="defense-panel">
+          <div class="defense-box"><div class="label">الميكانيزم النفسي</div><div class="txt" id="defenseMechanism">—</div></div>
+          <div class="defense-box"><div class="label">الخطأ الشائع في الميدان</div><div class="txt" id="defenseMistake">—</div></div>
+          <div class="defense-box script"><div class="label">سكريبت الاستجابة التكتيكية</div><div class="txt" id="defenseScript">—</div></div>
+        </div>
+      </div>
+
+
+      <div class="phase-block">
+        <div class="phase-title">الجزء ٢ — رادار بلوتشيك الانفعالي (Plutchik Tactical Radar)</div>
+        <div class="plutchik-grid" id="plutchikGrid"></div>
+        <div class="mix-panel">
+          <div class="mix-box"><div class="k">التركيب الانفعالي المتوقع</div><div class="v" id="plutchikBlend">—</div></div>
+          <div class="mix-box"><div class="k">جملة اختراق أول 12 ثانية</div><div class="v" id="plutchikOpener">—</div></div>
+        </div>
+      </div>
+
+      <div class="phase-block">
+        <div class="phase-title">الجزء ٣ — مصفوفة التفاوض المضاد (خطأ شائع ← رد تكتيكي)</div>
+        <div class="script-matrix" id="counterMatrix"></div>
+      </div>
+
       </div>
       <!-- ============================================================ END PSYCHOLOGY BLOCK 1 ============================================================ -->
 
@@ -10251,6 +10321,30 @@ function closePageQuiz(){document.getElementById('v12QuizModal').style.display='
 function updateEqTemp(v){const o=document.getElementById('eqTempOut');if(!o)return;o.textContent=v>=8?'توتر مرتفع: طبّق تنفس + تأجيل قرار 10 دقائق.':v>=5?'حالة متوسطة: استخدم أسئلة استيضاح قبل الرد.':'هدوء ممتاز: وقت مناسب للقرارات الصعبة.';}
 function calcBatna(){const c=+document.getElementById('batnaCurrent')?.value||0,a=+document.getElementById('batnaAlt')?.value||0,o=+document.getElementById('batnaOther')?.value||0;const z=Math.max(c,a);const st=z>o?'موقفك قوي':(z===o?'موقف متوازن':'موقفك ضعيف');document.getElementById('batnaOut').textContent=`ZOPA التقريبي: ${Math.min(z,o)} - ${Math.max(z,o)} | ${st}`;const pm=['بدائل','وقت','معلومة','تحالفات','الميزانية'];document.getElementById('powerMap').innerHTML=pm.map((x,i)=>`<div>${x}<input type=range min=1 max=10 value=${6-i}></div>`).join('');}
 (function initHeat(){const g=document.getElementById('heatGrid');if(!g)return;for(let i=0;i<64;i++){const v=+localStorage.getItem('heat_'+i)||Math.ceil(Math.random()*3);const d=document.createElement('button');d.style.height='20px';d.style.border='0';d.style.borderRadius='4px';d.style.background=v===3?'#166534':v===2?'#eab308':'#dc2626';d.onclick=()=>navigateTo(['page-callcenter','page-fieldsales','page-psych','page-eq','page-negotiation'][i%5]);g.appendChild(d);}const last=localStorage.getItem('last_page')||'لوحة التحكم';const el=document.getElementById('dailyChallenge');if(el)el.textContent='اليوم: طبّق سيناريو عملي مرتبط بآخر صفحة زرتها ('+last+').';})();
+
+const DEFENSE_LAB_DATA=[
+{key:'projection',title:'الإسقاط Projection',micro:'يرمي الشخص قلقه الداخلي على الطرف الآخر.',mechanism:'فرويد: الأنا تحمي ذاتها بنقل الدافع/الذنب للخارج. في البيع: العميل يتهمك بالضغط بينما هو خائف من قرار خاطئ. في الفريق: الموظف يتهم الإدارة بعدم الثقة بينما هو غير واثق من أدائه.',mistake:'الرد الدفاعي: "أنت من بدأت" أو "هذا غير صحيح". هذا يثبّت الإسقاط ويحوّل الحوار لمعركة هوية.',script:'Voss Label + NLP Reframe: "يبدو أن أهم شيء عندك ألا تندفع لقرار ناقص. خلّينا نبني معيار قرار واضح من 3 نقاط ونختبره سوا."'},
+{key:'rationalization',title:'التبرير Rationalization',micro:'تبرير منطقي ظاهري لقرار عاطفي مسبق.',mechanism:'بعد قرار مدفوع بالخوف/الكسل، العقل ينسج قصة منطقية لحماية صورة الذات. Cialdini: الاتساق الذاتي يدفع الشخص للدفاع عن روايته.',mistake:'مهاجمة المنطق مباشرة بالأرقام فقط. النتيجة: يزيد تمسكه بالتبرير لأنه يشعر بالتهديد.',script:'تكتيك "احفظ الكرامة ثم غيّر المسار": "منطقي جداً حرصك على الميزانية. لو أثبتنا أن الكلفة الخفية أعلى من الحل خلال 30 يوم، هل يكون التغيير قراراً ذكياً؟"'},
+{key:'displacement',title:'الإزاحة Displacement',micro:'تفريغ غضب موجّه لجهة أقوى على جهة آمنة.',mechanism:'العميل الذي تلقى ضغطاً من مديره قد يفرغ الانفعال على موظف الدعم. الموظف قد يزيح غضبه من السوق إلى زميله أو العميل.',mistake:'أخذ الهجوم بشكل شخصي أو الرد العقابي. هذا يضاعف الكورتيزول ويغلق المسار التنفيذي للتفكير.',script:'تنفيس مضبوط + حدّ واضح: "واضح إن اليوم كان ضاغط عليك، وأنا هنا لأخفف العبء الآن. خلينا نثبت المشكلة في جملة واحدة ثم أعطيك خيارين عمليين."'}
+];
+(function initDefenseLab(){const grid=document.getElementById('defenseGrid');if(!grid)return;const m=document.getElementById('defenseMechanism');const w=document.getElementById('defenseMistake');const sc=document.getElementById('defenseScript');const paint=(i)=>{const d=DEFENSE_LAB_DATA[i];m.textContent=d.mechanism;w.textContent=d.mistake;sc.textContent=d.script;[...grid.children].forEach((el,idx)=>el.classList.toggle('active',idx===i));};DEFENSE_LAB_DATA.forEach((d,i)=>{const c=document.createElement('article');c.className='defense-card';c.innerHTML=`<div class="defense-kicker">DEFENSE MECHANISM</div><h4>${d.title}</h4><p>${d.micro}</p>`;c.onclick=()=>paint(i);grid.appendChild(c);});paint(0);})();
+
+
+const PLUTCHIK_RADAR=[
+{emo:'غضب + اشمئزاز',trigger:'شعور بالاستغلال',blend:'ينتج رفضاً دفاعياً حاداً: "ما راح أمشي معكم". الهدف ليس الإقناع فوراً بل استعادة الشعور بالسيطرة.',opener:'"واضح أنك ترفض أي خطوة تشعرك بأنك مضغوط — خليني أعطيك خيارين بدون أي التزام الآن."'},
+{emo:'خوف + توقع',trigger:'قلق من خسارة الفرصة',blend:'حالة يقظة مرتفعة؛ الشخص يريد ضمانات قبل الحركة. يعمل معها تقليل الغموض لا زيادة الحماس.',opener:'"دعنا نجمّد العاطفة دقيقة ونبني سيناريوهين: أسوأ احتمال وأفضل احتمال خلال 30 يوم."'},
+{emo:'حزن + غضب',trigger:'تجربة سيئة سابقة',blend:'طاقة اعتراض مع ألم غير معالج. إذا قفزت للحل مباشرة سيقرأه كتجاهل لكرامته.',opener:'"قبل الحل، مهم عندي أفهم أين تم كسر الثقة تحديداً حتى لا نكرر نفس الألم."'},
+{emo:'فرح + توقع',trigger:'استعداد مبدئي للشراء',blend:'نافذة قرار سريعة لكن هشة. المطلوب تثبيت القرار بمعيار عقلاني حتى لا يرتد لاحقاً.',opener:'"ممتاز، حتى يكون قرارك ثابتاً: ما المعيار الأهم لك؟ سرعة النتيجة أم انخفاض المخاطر؟"'}
+];
+(function initPlutchik(){const g=document.getElementById('plutchikGrid');if(!g)return;const b=document.getElementById('plutchikBlend');const o=document.getElementById('plutchikOpener');const paint=(i)=>{b.textContent=PLUTCHIK_RADAR[i].blend;o.textContent=PLUTCHIK_RADAR[i].opener;[...g.children].forEach((x,idx)=>x.classList.toggle('active',idx===i));};PLUTCHIK_RADAR.forEach((r,i)=>{const n=document.createElement('div');n.className='plutchik-node';n.innerHTML=`<div class="emo">${r.emo}</div><div class="trg">المحفز: ${r.trigger}</div>`;n.onclick=()=>paint(i);g.appendChild(n);});paint(0);})();
+const COUNTER_MATRIX=[
+{case:'عميل يسقط نواياه عليك: "أنتم بس تبغون عمولة"',bad:'"غير صحيح، نحن محترفون"',good:'"يبدو أن آخر ما تريده الآن أن يستفيد أحد على حسابك. ما معيار العدالة الذي يناسبك؟"'},
+{case:'موظف يبرر تأخير التنفيذ: "العميل غير واضح"',bad:'"أنت دائماً عندك أعذار"',good:'"خلنا نفصل بين ما لا نتحكم فيه وما نتحكم فيه: ما الخطوة التي تقدر تبدأها خلال 20 دقيقة؟"'},
+{case:'عميل يزيح غضبه بسبب ضغط خارجي',bad:'"اهدأ أولاً ثم تكلم"',good:'"أتفهم الضغط الواقع عليك. أعطني جملة واحدة للمشكلة الآن، وأنا أقدم حلّين واضحين."'},
+{case:'مدير يهاجم الفريق بتعميمات',bad:'"الفريق ليس سيئاً"',good:'"حتى نحمي الأداء: ما السلوك المحدد الذي تريد تغييره هذا الأسبوع، وبأي مؤشر نجاح؟"'}
+];
+(function initCounterMatrix(){const w=document.getElementById('counterMatrix');if(!w)return;w.innerHTML=COUNTER_MATRIX.map(c=>`<article class="script-card"><h5>${c.case}</h5><p class="bad"><strong>الخطأ:</strong> ${c.bad}</p><p class="good"><strong>الرد التكتيكي:</strong> ${c.good}</p></article>`).join('');})();
+
 function completeDailyChallenge(){localStorage.setItem('daily_done',Date.now());alert('رائع! تم تحديث تقدمك.');}
 </script>
 
